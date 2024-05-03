@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# RESTful API with JavaScript and MongoDB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple RESTful API built with Node.js and MongoDB as the database. It provides endpoints that store the following types of data collected from students
 
-## Available Scripts
+## Table of Contents
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [Authentication](#authentication)
+- [Testing](#testing)
+- [Docker](#docker)
+- [Contributing](#contributing)
+- [License](#license)
 
-In the project directory, you can run:
+## Features
+- Create and export student data.
+- MongoDB for efficient data storage.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Before you begin, ensure you have met the following requirements:
 
-### `npm test`
+- Node.js and npm installed.
+- MongoDB server running locally or providing a connection URI.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/Davidosky007/directED-api.git
+   ```
+   
+2. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Create a `.env` file in the root directory and add the following environment variables:
+```
+PORT=5000
 
-### `npm run eject`
+MONGO_URI= a hosted MongoDB URL
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+JWT_SECRET=secret
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Start the server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   npm start
+   ```
 
-## Learn More
+2. Navigate to `http://localhost:5000/` to access the API.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Endpoints
 
-### Code Splitting
+## sample request 
+`curl --location 'https://directed-api.onrender.com/webhook/tally' \
+--header 'Content-Type: application/json' \
+--data '{
+  "pseudonym": "happygreensnake1",
+  "data": {
+    "qualtricsSurveys": [
+      {
+        "percData": { "question1": "answer1", "question2": "answer2" },
+        "spiSpiritData": { "question1": "answer1", "question2": "answer2" }
+      }
+    ],
+    "tallyForms": ["Expression of Interest"],
+    "yenzaTest": { "score": 85 },
+    "attendanceRecords": { "date": "2022-05-01", "status": "present" },
+    "oralExamResults": { "score": 90 },
+    "projectGrades": { "score": 95 },
+    "quizResults": { "score": 80 }
+  }
+}
+'`
+## sample response 
+`{
+    "_id": "6634da2d007585025bacdbb8",
+    "pseudonym": "happygreensnake1",
+    "__v": 0,
+    "attendanceRecords": {
+        "date": "2022-05-01",
+        "status": "present"
+    },
+    "oralExamResults": {
+        "score": 90
+    },
+    "projectGrades": {
+        "score": 95
+    },
+    "qualtricsSurveys": [
+        {
+            "percData": {
+                "question1": "answer1",
+                "question2": "answer2"
+            },
+            "spiSpiritData": {
+                "question1": "answer1",
+                "question2": "answer2"
+            },
+            "_id": "6634dc560bce1938dfc8ad59"
+        }
+    ],
+    "quizResults": {
+        "score": 80
+    },
+    "tallyForms": [
+        "Expression of Interest"
+    ],
+    "yenzaTest": {
+        "score": 85
+    }
+}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[API link](https://directed-api.onrender.com)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Authentication
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Environment
+Create a .env file in the root directory and add the following environment variables:
+```bash
+NODE_ENV=DEV
+MONGO_URI_DEV=<A hosted MongoDB database>
+JWT_SECRET=<secret>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Testing
 
-### Deployment
+To run the tests, run the following command:
+```bash
+npm run test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Docker
+To run the app in a docker container, run the following command:
+```bash
+docker build -t project_name.
+docker run -d -p 8080:8080 project_name
+```
