@@ -86,29 +86,38 @@ const ImportExportData = () => {
   });
 
   return (
-    <div>
-      <h2>Import and Export Data</h2>
-      <div {...getRootProps()} style={{ marginTop: '20px', border: '2px dashed #ccc', padding: '20px' }}>
-        <input {...getInputProps()} />
-        <p>Drag & drop files here, or click to select files</p>
-      </div>
-      <div>
-        <h3>Imported Data</h3>
-        <ul>
-          {importedData.map((student, index) => (
-            <li key={index}>{JSON.stringify(student)}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <button onClick={handleExportData}>Export Data</button>
-      </div>
-      {exportedFilePath && (
-        <div>
-          <a href={exportedFilePath} download="exported_data.xlsx">Download Exported Data</a>
-        </div>
-      )}
+ <div>
+  <h2 className="text-2xl font-bold mb-4">Import and Export Data</h2>
+  
+  <div {...getRootProps()} className="border-2 border-dashed border-gray-300 p-4 mb-4">
+    <input {...getInputProps()} />
+    <p className="text-gray-600">Drag & drop files here, or click to select files</p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-2">Imported Data</h3>
+    <ul className="list-disc pl-6">
+      {importedData.map((student, index) => (
+        <li key={index}>{JSON.stringify(student)}</li>
+      ))}
+    </ul>
+  </div>
+
+  <div className="mt-4">
+    <button onClick={handleExportData} className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">
+      Export Data
+    </button>
+  </div>
+
+  {exportedFilePath && (
+    <div className="mt-4">
+      <a href={exportedFilePath} download="exported_data.xlsx" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-block">
+        Download Exported Data
+      </a>
     </div>
+  )}
+</div>
+
   );
 };
 
