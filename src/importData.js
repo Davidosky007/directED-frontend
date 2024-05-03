@@ -49,7 +49,7 @@ const ImportExportData = () => {
 
       try {
         for (const student of students) {
-          const response = await axios.post('http://localhost:5000/webhook/tally', student, {
+          const response = await axios.post('https://directed-api.onrender.com/webhook/tally', student, {
             headers: {
               'Content-Type': 'application/json',
             },
@@ -67,7 +67,7 @@ const ImportExportData = () => {
 
   const handleExportData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/export', {
+      const response = await axios.get('https://directed-api.onrender.com/api/export', {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));
